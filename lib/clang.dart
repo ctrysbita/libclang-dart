@@ -1,4 +1,10 @@
 library libclang_dart;
 
-export 'src/libclang.dart';
-export 'src/translation_unit.dart';
+import 'dart:ffi';
+import 'package:ffi/ffi.dart';
+
+part 'src/index.dart';
+part 'src/translation_unit.dart';
+part 'src/translation_unit_flag.dart';
+
+var _lib = DynamicLibrary.open('/usr/lib/llvm-9/lib/libclang.so');
