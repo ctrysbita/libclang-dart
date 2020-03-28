@@ -1,6 +1,10 @@
 part of '../clang.dart';
 
 class CursorKind {
+  final int value;
+
+  const CursorKind._(this.value);
+
   /* Declarations */
   /**
    * A declaration whose specific kind is not exposed via this
@@ -11,95 +15,95 @@ class CursorKind {
    * spelling, find their definitions, etc. However, the specific kind
    * of the declaration is not reported.
    */
-  static const unexposedDecl = 1;
+  static const unexposedDecl = CursorKind._(1);
   /** A C or C++ struct. */
-  static const structDecl = 2;
+  static const structDecl = CursorKind._(2);
   /** A C or C++ union. */
-  static const unionDecl = 3;
+  static const unionDecl = CursorKind._(3);
   /** A C++ class. */
-  static const classDecl = 4;
+  static const classDecl = CursorKind._(4);
   /** An enumeration. */
-  static const enumDecl = 5;
+  static const enumDecl = CursorKind._(5);
   /**
    * A field (in C) or non-static data member (in C++) in a
    * struct, union, or C++ class.
    */
-  static const fieldDecl = 6;
+  static const fieldDecl = CursorKind._(6);
   /** An enumerator constant. */
-  static const enumConstantDecl = 7;
+  static const enumConstantDecl = CursorKind._(7);
   /** A function. */
-  static const functionDecl = 8;
+  static const functionDecl = CursorKind._(8);
   /** A variable. */
-  static const varDecl = 9;
+  static const varDecl = CursorKind._(9);
   /** A function or method parameter. */
-  static const parmDecl = 10;
+  static const parmDecl = CursorKind._(10);
   /** An Objective-C \@interface. */
-  static const objCInterfaceDecl = 11;
+  static const objCInterfaceDecl = CursorKind._(11);
   /** An Objective-C \@interface for a category. */
-  static const objCCategoryDecl = 12;
+  static const objCCategoryDecl = CursorKind._(12);
   /** An Objective-C \@protocol declaration. */
-  static const objCProtocolDecl = 13;
+  static const objCProtocolDecl = CursorKind._(13);
   /** An Objective-C \@property declaration. */
-  static const objCPropertyDecl = 14;
+  static const objCPropertyDecl = CursorKind._(14);
   /** An Objective-C instance variable. */
-  static const objCIvarDecl = 15;
+  static const objCIvarDecl = CursorKind._(15);
   /** An Objective-C instance method. */
-  static const objCInstanceMethodDecl = 16;
+  static const objCInstanceMethodDecl = CursorKind._(16);
   /** An Objective-C class method. */
-  static const objCClassMethodDecl = 17;
+  static const objCClassMethodDecl = CursorKind._(17);
   /** An Objective-C \@implementation. */
-  static const objCImplementationDecl = 18;
+  static const objCImplementationDecl = CursorKind._(18);
   /** An Objective-C \@implementation for a category. */
-  static const objCCategoryImplDecl = 19;
+  static const objCCategoryImplDecl = CursorKind._(19);
   /** A typedef. */
-  static const typedefDecl = 20;
+  static const typedefDecl = CursorKind._(20);
   /** A C++ class method. */
-  static const cxxMethod = 21;
+  static const cxxMethod = CursorKind._(21);
   /** A C++ namespace. */
-  static const namespace = 22;
+  static const namespace = CursorKind._(22);
   /** A linkage specification, e.g. 'extern "C"'. */
-  static const linkageSpec = 23;
+  static const linkageSpec = CursorKind._(23);
   /** A C++ constructor. */
-  static const constructor = 24;
+  static const constructor = CursorKind._(24);
   /** A C++ destructor. */
-  static const destructor = 25;
+  static const destructor = CursorKind._(25);
   /** A C++ conversion function. */
-  static const conversionFunction = 26;
+  static const conversionFunction = CursorKind._(26);
   /** A C++ template type parameter. */
-  static const templateTypeParameter = 27;
+  static const templateTypeParameter = CursorKind._(27);
   /** A C++ non-type template parameter. */
-  static const nonTypeTemplateParameter = 28;
+  static const nonTypeTemplateParameter = CursorKind._(28);
   /** A C++ template template parameter. */
-  static const templateTemplateParameter = 29;
+  static const templateTemplateParameter = CursorKind._(29);
   /** A C++ function template. */
-  static const functionTemplate = 30;
+  static const functionTemplate = CursorKind._(30);
   /** A C++ class template. */
-  static const classTemplate = 31;
+  static const classTemplate = CursorKind._(31);
   /** A C++ class template partial specialization. */
-  static const classTemplatePartialSpecialization = 32;
+  static const classTemplatePartialSpecialization = CursorKind._(32);
   /** A C++ namespace alias declaration. */
-  static const namespaceAlias = 33;
+  static const namespaceAlias = CursorKind._(33);
   /** A C++ using directive. */
-  static const usingDirective = 34;
+  static const usingDirective = CursorKind._(34);
   /** A C++ using declaration. */
-  static const usingDeclaration = 35;
+  static const usingDeclaration = CursorKind._(35);
   /** A C++ alias declaration */
-  static const typeAliasDecl = 36;
+  static const typeAliasDecl = CursorKind._(36);
   /** An Objective-C \@synthesize definition. */
-  static const objCSynthesizeDecl = 37;
+  static const objCSynthesizeDecl = CursorKind._(37);
   /** An Objective-C \@dynamic definition. */
-  static const objCDynamicDecl = 38;
+  static const objCDynamicDecl = CursorKind._(38);
   /** An access specifier. */
-  static const cxxAccessSpecifier = 39;
+  static const cxxAccessSpecifier = CursorKind._(39);
 
   static const firstDecl = unexposedDecl;
   static const lastDecl = cxxAccessSpecifier;
 
   /* References */
-  static const firstRef = 40;
-  static const objCSuperClassRef = 40;
-  static const objCProtocolRef = 41;
-  static const objCClassRef = 42;
+  static const firstRef = CursorKind._(40);
+  static const objCSuperClassRef = CursorKind._(40);
+  static const objCProtocolRef = CursorKind._(41);
+  static const objCClassRef = CursorKind._(42);
   /**
    * A reference to a type declaration.
    *
@@ -115,22 +119,22 @@ class CursorKind {
    * while the type of the variable "size" is referenced. The cursor
    * referenced by the type of size is the typedef for size_type.
    */
-  static const typeRef = 43;
-  static const cxxBaseSpecifier = 44;
+  static const typeRef = CursorKind._(43);
+  static const cxxBaseSpecifier = CursorKind._(44);
   /**
    * A reference to a class template, function template, template
    * template parameter, or class template partial specialization.
    */
-  static const templateRef = 45;
+  static const templateRef = CursorKind._(45);
   /**
    * A reference to a namespace or namespace alias.
    */
-  static const namespaceRef = 46;
+  static const namespaceRef = CursorKind._(46);
   /**
    * A reference to a member of a struct, union, or class that occurs in
    * some non-expression context, e.g., a designated initializer.
    */
-  static const memberRef = 47;
+  static const memberRef = CursorKind._(47);
   /**
    * A reference to a labeled statement.
    *
@@ -146,7 +150,7 @@ class CursorKind {
    *
    * A label reference cursor refers to a label statement.
    */
-  static const labelRef = 48;
+  static const labelRef = CursorKind._(48);
 
   /**
    * A reference to a set of overloaded functions or function templates
@@ -184,26 +188,26 @@ class CursorKind {
    * \c clang_getOverloadedDecl() can be used to retrieve the definitions
    * referenced by this cursor.
    */
-  static const overloadedDeclRef = 49;
+  static const overloadedDeclRef = CursorKind._(49);
 
   /**
    * A reference to a variable that occurs in some non-expression
    * context, e.g., a C++ lambda capture list.
    */
-  static const variableRef = 50;
+  static const variableRef = CursorKind._(50);
 
   static const lastRef = variableRef;
 
   /* Error conditions */
-  static const firstInvalid = 70;
-  static const invalidFile = 70;
-  static const noDeclFound = 71;
-  static const notImplemented = 72;
-  static const invalidCode = 73;
+  static const firstInvalid = CursorKind._(70);
+  static const invalidFile = CursorKind._(70);
+  static const noDeclFound = CursorKind._(71);
+  static const notImplemented = CursorKind._(72);
+  static const invalidCode = CursorKind._(73);
   static const lastInvalid = invalidCode;
 
   /* Expressions */
-  static const firstExpr = 100;
+  static const firstExpr = CursorKind._(100);
 
   /**
    * An expression whose specific kind is not exposed via this
@@ -214,104 +218,104 @@ class CursorKind {
    * spelling, children, etc. However, the specific kind of the
    * expression is not reported.
    */
-  static const unexposedExpr = 100;
+  static const unexposedExpr = CursorKind._(100);
 
   /**
    * An expression that refers to some value declaration, such
    * as a function, variable, or enumerator.
    */
-  static const declRefExpr = 101;
+  static const declRefExpr = CursorKind._(101);
 
   /**
    * An expression that refers to a member of a struct, union,
    * class, Objective-C class, etc.
    */
-  static const memberRefExpr = 102;
+  static const memberRefExpr = CursorKind._(102);
 
   /** An expression that calls a function. */
-  static const callExpr = 103;
+  static const callExpr = CursorKind._(103);
 
   /** An expression that sends a message to an Objective-C
    object or class. */
-  static const objCMessageExpr = 104;
+  static const objCMessageExpr = CursorKind._(104);
 
   /** An expression that represents a block literal. */
-  static const blockExpr = 105;
+  static const blockExpr = CursorKind._(105);
 
   /** An integer literal.
    */
-  static const integerLiteral = 106;
+  static const integerLiteral = CursorKind._(106);
 
   /** A floating point number literal.
    */
-  static const floatingLiteral = 107;
+  static const floatingLiteral = CursorKind._(107);
 
   /** An imaginary number literal.
    */
-  static const imaginaryLiteral = 108;
+  static const imaginaryLiteral = CursorKind._(108);
 
   /** A string literal.
    */
-  static const stringLiteral = 109;
+  static const stringLiteral = CursorKind._(109);
 
   /** A character literal.
    */
-  static const characterLiteral = 110;
+  static const characterLiteral = CursorKind._(110);
 
   /** A parenthesized expression, e.g. "(1)".
    *
    * This AST node is only formed if full location information is requested.
    */
-  static const parenExpr = 111;
+  static const parenExpr = CursorKind._(111);
 
   /** This represents the unary-expression's (except sizeof and
    * alignof).
    */
-  static const unaryOperator = 112;
+  static const unaryOperator = CursorKind._(112);
 
   /** [C99 6.5.2.1] Array Subscripting.
    */
-  static const arraySubscriptExpr = 113;
+  static const arraySubscriptExpr = CursorKind._(113);
 
   /** A builtin binary operation expression such as "x + y" or
    * "x <= y".
    */
-  static const binaryOperator = 114;
+  static const binaryOperator = CursorKind._(114);
 
   /** Compound assignment such as "+=".
    */
-  static const compoundAssignOperator = 115;
+  static const compoundAssignOperator = CursorKind._(115);
 
   /** The ?: ternary operator.
    */
-  static const conditionalOperator = 116;
+  static const conditionalOperator = CursorKind._(116);
 
   /** An explicit cast in C (C99 6.5.4) or a C-style cast in C++
    * (C++ [expr.cast]), which uses the syntax (Type)expr.
    *
    * For example: (int)f.
    */
-  static const cStyleCastExpr = 117;
+  static const cStyleCastExpr = CursorKind._(117);
 
   /** [C99 6.5.2.5]
    */
-  static const compoundLiteralExpr = 118;
+  static const compoundLiteralExpr = CursorKind._(118);
 
   /** Describes an C or C++ initializer list.
    */
-  static const initListExpr = 119;
+  static const initListExpr = CursorKind._(119);
 
   /** The GNU address of label extension, representing &&label.
    */
-  static const addrLabelExpr = 120;
+  static const addrLabelExpr = CursorKind._(120);
 
   /** This is the GNU Statement Expression extension: ({int X=4; X;})
    */
-  static const stmtExpr = 121;
+  static const stmtExpr = CursorKind._(121);
 
   /** Represents a C11 generic selection.
    */
-  static const genericSelectionExpr = 122;
+  static const genericSelectionExpr = CursorKind._(122);
 
   /** Implements the GNU __null extension, which is a name for a null
    * pointer constant that has integral type (e.g., int or long) and is the same
@@ -321,23 +325,23 @@ class CursorKind {
    * NULL as __null in C++ rather than using 0 (which is an integer that may not
    * match the size of a pointer).
    */
-  static const gNUNullExpr = 123;
+  static const gNUNullExpr = CursorKind._(123);
 
   /** C++'s static_cast<> expression.
    */
-  static const cxxStaticCastExpr = 124;
+  static const cxxStaticCastExpr = CursorKind._(124);
 
   /** C++'s dynamic_cast<> expression.
    */
-  static const cxxDynamicCastExpr = 125;
+  static const cxxDynamicCastExpr = CursorKind._(125);
 
   /** C++'s reinterpret_cast<> expression.
    */
-  static const cxxReinterpretCastExpr = 126;
+  static const cxxReinterpretCastExpr = CursorKind._(126);
 
   /** C++'s const_cast<> expression.
    */
-  static const cxxConstCastExpr = 127;
+  static const cxxConstCastExpr = CursorKind._(127);
 
   /** Represents an explicit C++ type conversion that uses "functional"
    * notion (C++ [expr.type.conv]).
@@ -347,60 +351,60 @@ class CursorKind {
    *   x = int(0.5);
    * \endcode
    */
-  static const cxxFunctionalCastExpr = 128;
+  static const cxxFunctionalCastExpr = CursorKind._(128);
 
   /** A C++ typeid expression (C++ [expr.typeid]).
    */
-  static const cxxTypeidExpr = 129;
+  static const cxxTypeidExpr = CursorKind._(129);
 
   /** [C++ 2.13.5] C++ Boolean Literal.
    */
-  static const cxxBoolLiteralExpr = 130;
+  static const cxxBoolLiteralExpr = CursorKind._(130);
 
   /** [C++0x 2.14.7] C++ Pointer Literal.
    */
-  static const cxxNullPtrLiteralExpr = 131;
+  static const cxxNullPtrLiteralExpr = CursorKind._(131);
 
   /** Represents the "this" expression in C++
    */
-  static const cxxThisExpr = 132;
+  static const cxxThisExpr = CursorKind._(132);
 
   /** [C++ 15] C++ Throw Expression.
    *
    * This handles 'throw' and 'throw' assignment-expression. When
    * assignment-expression isn't present, Op will be null.
    */
-  static const cxxThrowExpr = 133;
+  static const cxxThrowExpr = CursorKind._(133);
 
   /** A new expression for memory allocation and constructor calls, e.g:
    * "new CXXNewExpr(foo)".
    */
-  static const cxxNewExpr = 134;
+  static const cxxNewExpr = CursorKind._(134);
 
   /** A delete expression for memory deallocation and destructor calls,
    * e.g. "delete[] pArray".
    */
-  static const cxxDeleteExpr = 135;
+  static const cxxDeleteExpr = CursorKind._(135);
 
   /** A unary expression. (noexcept, sizeof, or other traits)
    */
-  static const unaryExpr = 136;
+  static const unaryExpr = CursorKind._(136);
 
   /** An Objective-C string literal i.e. @"foo".
    */
-  static const objCStringLiteral = 137;
+  static const objCStringLiteral = CursorKind._(137);
 
   /** An Objective-C \@encode expression.
    */
-  static const objCEncodeExpr = 138;
+  static const objCEncodeExpr = CursorKind._(138);
 
   /** An Objective-C \@selector expression.
    */
-  static const objCSelectorExpr = 139;
+  static const objCSelectorExpr = CursorKind._(139);
 
   /** An Objective-C \@protocol expression.
    */
-  static const objCProtocolExpr = 140;
+  static const objCProtocolExpr = CursorKind._(140);
 
   /** An Objective-C "bridged" cast expression, which casts between
    * Objective-C pointers and C pointers, transferring ownership in the process.
@@ -409,7 +413,7 @@ class CursorKind {
    *   NSString *str = (__bridge_transfer NSString *)CFCreateString();
    * \endcode
    */
-  static const objCBridgedCastExpr = 141;
+  static const objCBridgedCastExpr = CursorKind._(141);
 
   /** Represents a C++0x pack expansion that produces a sequence of
    * expressions.
@@ -424,7 +428,7 @@ class CursorKind {
    * }
    * \endcode
    */
-  static const packExpansionExpr = 142;
+  static const packExpansionExpr = CursorKind._(142);
 
   /** Represents an expression that computes the length of a parameter
    * pack.
@@ -436,7 +440,7 @@ class CursorKind {
    * };
    * \endcode
    */
-  static const sizeOfPackExpr = 143;
+  static const sizeOfPackExpr = CursorKind._(143);
 
   /* Represents a C++ lambda expression that produces a local function
    * object.
@@ -450,33 +454,33 @@ class CursorKind {
    * }
    * \endcode
    */
-  static const lambdaExpr = 144;
+  static const lambdaExpr = CursorKind._(144);
 
   /** Objective-c Boolean Literal.
    */
-  static const objCBoolLiteralExpr = 145;
+  static const objCBoolLiteralExpr = CursorKind._(145);
 
   /** Represents the "self" expression in an Objective-C method.
    */
-  static const objCSelfExpr = 146;
+  static const objCSelfExpr = CursorKind._(146);
 
   /** OpenMP 4.0 [2.4, Array Section].
    */
-  static const ompArraySectionExpr = 147;
+  static const ompArraySectionExpr = CursorKind._(147);
 
   /** Represents an @available(...) check.
    */
-  static const objCAvailabilityCheckExpr = 148;
+  static const objCAvailabilityCheckExpr = CursorKind._(148);
 
   /**
    * Fixed point literal
    */
-  static const fixedPointLiteral = 149;
+  static const fixedPointLiteral = CursorKind._(149);
 
   static const lastExpr = fixedPointLiteral;
 
   /* Statements */
-  static const firstStmt = 200;
+  static const firstStmt = CursorKind._(200);
   /**
    * A statement whose specific kind is not exposed via this
    * interface.
@@ -486,7 +490,7 @@ class CursorKind {
    * children, etc. However, the specific kind of the statement is not
    * reported.
    */
-  static const unexposedStmt = 200;
+  static const unexposedStmt = CursorKind._(200);
 
   /** A labelled statement in a function.
    *
@@ -499,330 +503,331 @@ class CursorKind {
    * \endcode
    *
    */
-  static const labelStmt = 201;
+  static const labelStmt = CursorKind._(201);
 
   /** A group of statements like { stmt stmt }.
    *
    * This cursor kind is used to describe compound statements, e.g. function
    * bodies.
    */
-  static const compoundStmt = 202;
+  static const compoundStmt = CursorKind._(202);
 
   /** A case statement.
    */
-  static const caseStmt = 203;
+  static const caseStmt = CursorKind._(203);
 
   /** A default statement.
    */
-  static const defaultStmt = 204;
+  static const defaultStmt = CursorKind._(204);
 
   /** An if statement
    */
-  static const ifStmt = 205;
+  static const ifStmt = CursorKind._(205);
 
   /** A switch statement.
    */
-  static const switchStmt = 206;
+  static const switchStmt = CursorKind._(206);
 
   /** A while statement.
    */
-  static const whileStmt = 207;
+  static const whileStmt = CursorKind._(207);
 
   /** A do statement.
    */
-  static const doStmt = 208;
+  static const doStmt = CursorKind._(208);
 
   /** A for statement.
    */
-  static const forStmt = 209;
+  static const forStmt = CursorKind._(209);
 
   /** A goto statement.
    */
-  static const gotoStmt = 210;
+  static const gotoStmt = CursorKind._(210);
 
   /** An indirect goto statement.
    */
-  static const indirectGotoStmt = 211;
+  static const indirectGotoStmt = CursorKind._(211);
 
   /** A continue statement.
    */
-  static const continueStmt = 212;
+  static const continueStmt = CursorKind._(212);
 
   /** A break statement.
    */
-  static const breakStmt = 213;
+  static const breakStmt = CursorKind._(213);
 
   /** A return statement.
    */
-  static const returnStmt = 214;
+  static const returnStmt = CursorKind._(214);
 
   /** A GCC inline assembly statement extension.
    */
-  static const gccAsmStmt = 215;
+  static const gccAsmStmt = CursorKind._(215);
   static const asmStmt = gccAsmStmt;
 
   /** Objective-C's overall \@try-\@catch-\@finally statement.
    */
-  static const objCAtTryStmt = 216;
+  static const objCAtTryStmt = CursorKind._(216);
 
   /** Objective-C's \@catch statement.
    */
-  static const objCAtCatchStmt = 217;
+  static const objCAtCatchStmt = CursorKind._(217);
 
   /** Objective-C's \@finally statement.
    */
-  static const objCAtFinallyStmt = 218;
+  static const objCAtFinallyStmt = CursorKind._(218);
 
   /** Objective-C's \@throw statement.
    */
-  static const objCAtThrowStmt = 219;
+  static const objCAtThrowStmt = CursorKind._(219);
 
   /** Objective-C's \@synchronized statement.
    */
-  static const objCAtSynchronizedStmt = 220;
+  static const objCAtSynchronizedStmt = CursorKind._(220);
 
   /** Objective-C's autorelease pool statement.
    */
-  static const objCAutoreleasePoolStmt = 221;
+  static const objCAutoreleasePoolStmt = CursorKind._(221);
 
   /** Objective-C's collection statement.
    */
-  static const objCForCollectionStmt = 222;
+  static const objCForCollectionStmt = CursorKind._(222);
 
   /** C++'s catch statement.
    */
-  static const cxxCatchStmt = 223;
+  static const cxxCatchStmt = CursorKind._(223);
 
   /** C++'s try statement.
    */
-  static const cxxTryStmt = 224;
+  static const cxxTryStmt = CursorKind._(224);
 
   /** C++'s for (* : *) statement.
    */
-  static const cxxForRangeStmt = 225;
+  static const cxxForRangeStmt = CursorKind._(225);
 
   /** Windows Structured Exception Handling's try statement.
    */
-  static const sehTryStmt = 226;
+  static const sehTryStmt = CursorKind._(226);
 
   /** Windows Structured Exception Handling's except statement.
    */
-  static const sehExceptStmt = 227;
+  static const sehExceptStmt = CursorKind._(227);
 
   /** Windows Structured Exception Handling's finally statement.
    */
-  static const sehFinallyStmt = 228;
+  static const sehFinallyStmt = CursorKind._(228);
 
   /** A MS inline assembly statement extension.
    */
-  static const mSAsmStmt = 229;
+  static const mSAsmStmt = CursorKind._(229);
 
   /** The null statement ";": C99 6.8.3p3.
    *
    * This cursor kind is used to describe the null statement.
    */
-  static const nullStmt = 230;
+  static const nullStmt = CursorKind._(230);
 
   /** Adaptor class for mixing declarations with statements and
    * expressions.
    */
-  static const declStmt = 231;
+  static const declStmt = CursorKind._(231);
 
   /** OpenMP parallel directive.
    */
-  static const ompParallelDirective = 232;
+  static const ompParallelDirective = CursorKind._(232);
 
   /** OpenMP SIMD directive.
    */
-  static const ompSimdDirective = 233;
+  static const ompSimdDirective = CursorKind._(233);
 
   /** OpenMP for directive.
    */
-  static const ompForDirective = 234;
+  static const ompForDirective = CursorKind._(234);
 
   /** OpenMP sections directive.
    */
-  static const ompSectionsDirective = 235;
+  static const ompSectionsDirective = CursorKind._(235);
 
   /** OpenMP section directive.
    */
-  static const ompSectionDirective = 236;
+  static const ompSectionDirective = CursorKind._(236);
 
   /** OpenMP single directive.
    */
-  static const ompSingleDirective = 237;
+  static const ompSingleDirective = CursorKind._(237);
 
   /** OpenMP parallel for directive.
    */
-  static const ompParallelForDirective = 238;
+  static const ompParallelForDirective = CursorKind._(238);
 
   /** OpenMP parallel sections directive.
    */
-  static const ompParallelSectionsDirective = 239;
+  static const ompParallelSectionsDirective = CursorKind._(239);
 
   /** OpenMP task directive.
    */
-  static const ompTaskDirective = 240;
+  static const ompTaskDirective = CursorKind._(240);
 
   /** OpenMP master directive.
    */
-  static const ompMasterDirective = 241;
+  static const ompMasterDirective = CursorKind._(241);
 
   /** OpenMP critical directive.
    */
-  static const ompCriticalDirective = 242;
+  static const ompCriticalDirective = CursorKind._(242);
 
   /** OpenMP taskyield directive.
    */
-  static const ompTaskyieldDirective = 243;
+  static const ompTaskyieldDirective = CursorKind._(243);
 
   /** OpenMP barrier directive.
    */
-  static const ompBarrierDirective = 244;
+  static const ompBarrierDirective = CursorKind._(244);
 
   /** OpenMP taskwait directive.
    */
-  static const ompTaskwaitDirective = 245;
+  static const ompTaskwaitDirective = CursorKind._(245);
 
   /** OpenMP flush directive.
    */
-  static const ompFlushDirective = 246;
+  static const ompFlushDirective = CursorKind._(246);
 
   /** Windows Structured Exception Handling's leave statement.
    */
-  static const sehLeaveStmt = 247;
+  static const sehLeaveStmt = CursorKind._(247);
 
   /** OpenMP ordered directive.
    */
-  static const ompOrderedDirective = 248;
+  static const ompOrderedDirective = CursorKind._(248);
 
   /** OpenMP atomic directive.
    */
-  static const ompAtomicDirective = 249;
+  static const ompAtomicDirective = CursorKind._(249);
 
   /** OpenMP for SIMD directive.
    */
-  static const ompForSimdDirective = 250;
+  static const ompForSimdDirective = CursorKind._(250);
 
   /** OpenMP parallel for SIMD directive.
    */
-  static const ompParallelForSimdDirective = 251;
+  static const ompParallelForSimdDirective = CursorKind._(251);
 
   /** OpenMP target directive.
    */
-  static const ompTargetDirective = 252;
+  static const ompTargetDirective = CursorKind._(252);
 
   /** OpenMP teams directive.
    */
-  static const ompTeamsDirective = 253;
+  static const ompTeamsDirective = CursorKind._(253);
 
   /** OpenMP taskgroup directive.
    */
-  static const ompTaskgroupDirective = 254;
+  static const ompTaskgroupDirective = CursorKind._(254);
 
   /** OpenMP cancellation point directive.
    */
-  static const ompCancellationPointDirective = 255;
+  static const ompCancellationPointDirective = CursorKind._(255);
 
   /** OpenMP cancel directive.
    */
-  static const ompCancelDirective = 256;
+  static const ompCancelDirective = CursorKind._(256);
 
   /** OpenMP target data directive.
    */
-  static const ompTargetDataDirective = 257;
+  static const ompTargetDataDirective = CursorKind._(257);
 
   /** OpenMP taskloop directive.
    */
-  static const ompTaskLoopDirective = 258;
+  static const ompTaskLoopDirective = CursorKind._(258);
 
   /** OpenMP taskloop simd directive.
    */
-  static const ompTaskLoopSimdDirective = 259;
+  static const ompTaskLoopSimdDirective = CursorKind._(259);
 
   /** OpenMP distribute directive.
    */
-  static const ompDistributeDirective = 260;
+  static const ompDistributeDirective = CursorKind._(260);
 
   /** OpenMP target enter data directive.
    */
-  static const ompTargetEnterDataDirective = 261;
+  static const ompTargetEnterDataDirective = CursorKind._(261);
 
   /** OpenMP target exit data directive.
    */
-  static const ompTargetExitDataDirective = 262;
+  static const ompTargetExitDataDirective = CursorKind._(262);
 
   /** OpenMP target parallel directive.
    */
-  static const ompTargetParallelDirective = 263;
+  static const ompTargetParallelDirective = CursorKind._(263);
 
   /** OpenMP target parallel for directive.
    */
-  static const ompTargetParallelForDirective = 264;
+  static const ompTargetParallelForDirective = CursorKind._(264);
 
   /** OpenMP target update directive.
    */
-  static const ompTargetUpdateDirective = 265;
+  static const ompTargetUpdateDirective = CursorKind._(265);
 
   /** OpenMP distribute parallel for directive.
    */
-  static const ompDistributeParallelForDirective = 266;
+  static const ompDistributeParallelForDirective = CursorKind._(266);
 
   /** OpenMP distribute parallel for simd directive.
    */
-  static const ompDistributeParallelForSimdDirective = 267;
+  static const ompDistributeParallelForSimdDirective = CursorKind._(267);
 
   /** OpenMP distribute simd directive.
    */
-  static const ompDistributeSimdDirective = 268;
+  static const ompDistributeSimdDirective = CursorKind._(268);
 
   /** OpenMP target parallel for simd directive.
    */
-  static const ompTargetParallelForSimdDirective = 269;
+  static const ompTargetParallelForSimdDirective = CursorKind._(269);
 
   /** OpenMP target simd directive.
    */
-  static const ompTargetSimdDirective = 270;
+  static const ompTargetSimdDirective = CursorKind._(270);
 
   /** OpenMP teams distribute directive.
    */
-  static const ompTeamsDistributeDirective = 271;
+  static const ompTeamsDistributeDirective = CursorKind._(271);
 
   /** OpenMP teams distribute simd directive.
    */
-  static const ompTeamsDistributeSimdDirective = 272;
+  static const ompTeamsDistributeSimdDirective = CursorKind._(272);
 
   /** OpenMP teams distribute parallel for simd directive.
    */
-  static const ompTeamsDistributeParallelForSimdDirective = 273;
+  static const ompTeamsDistributeParallelForSimdDirective = CursorKind._(273);
 
   /** OpenMP teams distribute parallel for directive.
    */
-  static const ompTeamsDistributeParallelForDirective = 274;
+  static const ompTeamsDistributeParallelForDirective = CursorKind._(274);
 
   /** OpenMP target teams directive.
    */
-  static const ompTargetTeamsDirective = 275;
+  static const ompTargetTeamsDirective = CursorKind._(275);
 
   /** OpenMP target teams distribute directive.
    */
-  static const ompTargetTeamsDistributeDirective = 276;
+  static const ompTargetTeamsDistributeDirective = CursorKind._(276);
 
   /** OpenMP target teams distribute parallel for directive.
    */
-  static const ompTargetTeamsDistributeParallelForDirective = 277;
+  static const ompTargetTeamsDistributeParallelForDirective = CursorKind._(277);
 
   /** OpenMP target teams distribute parallel for simd directive.
    */
-  static const ompTargetTeamsDistributeParallelForSimdDirective = 278;
+  static const ompTargetTeamsDistributeParallelForSimdDirective =
+      CursorKind._(278);
 
   /** OpenMP target teams distribute simd directive.
    */
-  static const ompTargetTeamsDistributeSimdDirective = 279;
+  static const ompTargetTeamsDistributeSimdDirective = CursorKind._(279);
 
   /** C++2a std::bit_cast expression.
    */
-  static const builtinBitCastExpr = 280;
+  static const builtinBitCastExpr = CursorKind._(280);
 
   static const lastStmt = builtinBitCastExpr;
 
@@ -832,65 +837,65 @@ class CursorKind {
    * The translation unit cursor exists primarily to act as the root
    * cursor for traversing the contents of a translation unit.
    */
-  static const translationUnit = 300;
+  static const translationUnit = CursorKind._(300);
 
   /* Attributes */
-  static const firstAttr = 400;
+  static const firstAttr = CursorKind._(400);
   /**
    * An attribute whose specific kind is not exposed via this
    * interface.
    */
-  static const unexposedAttr = 400;
+  static const unexposedAttr = CursorKind._(400);
 
-  static const iBActionAttr = 401;
-  static const iBOutletAttr = 402;
-  static const iBOutletCollectionAttr = 403;
-  static const cxxFinalAttr = 404;
-  static const cxxOverrideAttr = 405;
-  static const annotateAttr = 406;
-  static const asmLabelAttr = 407;
-  static const packedAttr = 408;
-  static const pureAttr = 409;
-  static const constAttr = 410;
-  static const noDuplicateAttr = 411;
-  static const cudaConstantAttr = 412;
-  static const cudaDeviceAttr = 413;
-  static const cudaGlobalAttr = 414;
-  static const cudaHostAttr = 415;
-  static const cudaSharedAttr = 416;
-  static const visibilityAttr = 417;
-  static const dLLExport = 418;
-  static const dLLImport = 419;
-  static const nSReturnsRetained = 420;
-  static const nSReturnsNotRetained = 421;
-  static const nSReturnsAutoreleased = 422;
-  static const nSConsumesSelf = 423;
-  static const nSConsumed = 424;
-  static const objCException = 425;
-  static const objCNSObject = 426;
-  static const objCIndependentClass = 427;
-  static const objCPreciseLifetime = 428;
-  static const objCReturnsInnerPointer = 429;
-  static const objCRequiresSuper = 430;
-  static const objCRootClass = 431;
-  static const objCSubclassingRestricted = 432;
-  static const objCExplicitProtocolImpl = 433;
-  static const objCDesignatedInitializer = 434;
-  static const objCRuntimeVisible = 435;
-  static const objCBoxable = 436;
-  static const flagEnum = 437;
-  static const convergentAttr = 438;
-  static const warnUnusedAttr = 439;
-  static const warnUnusedResultAttr = 440;
-  static const alignedAttr = 441;
+  static const iBActionAttr = CursorKind._(401);
+  static const iBOutletAttr = CursorKind._(402);
+  static const iBOutletCollectionAttr = CursorKind._(403);
+  static const cxxFinalAttr = CursorKind._(404);
+  static const cxxOverrideAttr = CursorKind._(405);
+  static const annotateAttr = CursorKind._(406);
+  static const asmLabelAttr = CursorKind._(407);
+  static const packedAttr = CursorKind._(408);
+  static const pureAttr = CursorKind._(409);
+  static const constAttr = CursorKind._(410);
+  static const noDuplicateAttr = CursorKind._(411);
+  static const cudaConstantAttr = CursorKind._(412);
+  static const cudaDeviceAttr = CursorKind._(413);
+  static const cudaGlobalAttr = CursorKind._(414);
+  static const cudaHostAttr = CursorKind._(415);
+  static const cudaSharedAttr = CursorKind._(416);
+  static const visibilityAttr = CursorKind._(417);
+  static const dLLExport = CursorKind._(418);
+  static const dLLImport = CursorKind._(419);
+  static const nSReturnsRetained = CursorKind._(420);
+  static const nSReturnsNotRetained = CursorKind._(421);
+  static const nSReturnsAutoreleased = CursorKind._(422);
+  static const nSConsumesSelf = CursorKind._(423);
+  static const nSConsumed = CursorKind._(424);
+  static const objCException = CursorKind._(425);
+  static const objCNSObject = CursorKind._(426);
+  static const objCIndependentClass = CursorKind._(427);
+  static const objCPreciseLifetime = CursorKind._(428);
+  static const objCReturnsInnerPointer = CursorKind._(429);
+  static const objCRequiresSuper = CursorKind._(430);
+  static const objCRootClass = CursorKind._(431);
+  static const objCSubclassingRestricted = CursorKind._(432);
+  static const objCExplicitProtocolImpl = CursorKind._(433);
+  static const objCDesignatedInitializer = CursorKind._(434);
+  static const objCRuntimeVisible = CursorKind._(435);
+  static const objCBoxable = CursorKind._(436);
+  static const flagEnum = CursorKind._(437);
+  static const convergentAttr = CursorKind._(438);
+  static const warnUnusedAttr = CursorKind._(439);
+  static const warnUnusedResultAttr = CursorKind._(440);
+  static const alignedAttr = CursorKind._(441);
   static const lastAttr = alignedAttr;
 
   /* Preprocessing */
-  static const preprocessingDirective = 500;
-  static const macroDefinition = 501;
-  static const macroExpansion = 502;
+  static const preprocessingDirective = CursorKind._(500);
+  static const macroDefinition = CursorKind._(501);
+  static const macroExpansion = CursorKind._(502);
   static const macroInstantiation = macroExpansion;
-  static const inclusionDirective = 503;
+  static const inclusionDirective = CursorKind._(503);
   static const firstPreprocessing = preprocessingDirective;
   static const lastPreprocessing = inclusionDirective;
 
@@ -898,21 +903,21 @@ class CursorKind {
   /**
    * A module import declaration.
    */
-  static const moduleImportDecl = 600;
-  static const typeAliasTemplateDecl = 601;
+  static const moduleImportDecl = CursorKind._(600);
+  static const typeAliasTemplateDecl = CursorKind._(601);
   /**
    * A static_assert or _Static_assert node
    */
-  static const staticAssert = 602;
+  static const staticAssert = CursorKind._(602);
   /**
    * a friend declaration.
    */
-  static const friendDecl = 603;
+  static const friendDecl = CursorKind._(603);
   static const firstExtraDecl = moduleImportDecl;
   static const lastExtraDecl = friendDecl;
 
   /**
    * A code completion overload candidate.
    */
-  static const overloadCandidate = 70;
+  static const overloadCandidate = CursorKind._(70);
 }
