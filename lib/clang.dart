@@ -1,4 +1,4 @@
-library libclang_dart;
+library libclang;
 
 import 'dart:ffi';
 import 'package:ffi/ffi.dart';

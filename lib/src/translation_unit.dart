@@ -58,5 +58,5 @@ class TranslationUnit {
    * The translation unit cursor can be used to start traversing the
    * various declarations within the given translation unit.
    */
-  Cursor get cursor => _getTranslationUnitCursor(impl).ref;
+  Pointer<Cursor> get cursor => _getTranslationUnitCursor(impl);
 }

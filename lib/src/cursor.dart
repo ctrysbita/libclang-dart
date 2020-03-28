@@ -31,3 +31,61 @@ class Cursor extends Struct {
 
   CursorKind get kind => CursorKind(_kind);
 }
+
+/**
+ * Describes how the traversal of the children of a particular
+ * cursor should proceed after visiting a particular child cursor.
+ *
+ * A value of this enumeration type should be returned by each
+ * \c CXCursorVisitor to indicate how clang_visitChildren() proceed.
+ */
+enum ChildVisitResult {
+  /**
+   * Terminates the cursor traversal.
+   */
+  Break,
+  /**
+   * Continues the cursor traversal with the next sibling of
+   * the cursor just visited, without visiting its children.
+   */
+  Continue,
+  /**
+   * Recursively traverse the children of this cursor, using
+   * the same visitor and client data.
+   */
+  Recurse
+}
+
+typedef _NativeCursorVisitor = Int32 Function(
+    Pointer<Cursor>, Pointer<Cursor>, Pointer<Void>);
+
+typedef CursorVisitor = ChildVisitResult Function(
+    Pointer<Cursor>, Pointer<Cursor>, Pointer<Void>);
+
+final _visitChildren = _lib.lookupFunction<
+    Uint32 Function(Pointer<Cursor>,
+        Pointer<NativeFunction<_NativeCursorVisitor>>, Pointer<Void>),
+    int Function(Pointer<Cursor>, Pointer<NativeFunction<_NativeCursorVisitor>>,
+        Pointer<Void>)>('clang_visitChildren');
+
+extension CursorVisitorAddon on Pointer<Cursor> {
+  /// Temporary visitor holder since dart:ffi only supports calling static dart
+  /// functions from native code.
+  static CursorVisitor _visitor = null;
+
+  /// Static callback.
+  static int callback(Pointer<Cursor> cursor, Pointer<Cursor> parent,
+          Pointer<Void> clientData) =>
+      _visitor(cursor, parent, clientData).index;
+
+  int visitChildren(CursorVisitor visitor, [Pointer<Void> clientData]) {
+    CursorVisitorAddon._visitor = visitor;
+
+    // Break visiting while exception throws.
+    Pointer<NativeFunction<_NativeCursorVisitor>> nativeCallback =
+        Pointer.fromFunction(callback, 0);
+
+    return _visitChildren(
+        this, nativeCallback, clientData ?? Pointer.fromAddress(0));
+  }
+}
