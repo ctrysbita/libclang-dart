@@ -14,83 +14,121 @@ class CursorKind {
    * of the declaration is not reported.
    */
   static const unexposedDecl = CursorKind(1);
+
   /** A C or C++ struct. */
   static const structDecl = CursorKind(2);
+
   /** A C or C++ union. */
   static const unionDecl = CursorKind(3);
+
   /** A C++ class. */
   static const classDecl = CursorKind(4);
+
   /** An enumeration. */
   static const enumDecl = CursorKind(5);
+
   /**
    * A field (in C) or non-static data member (in C++) in a
    * struct, union, or C++ class.
    */
   static const fieldDecl = CursorKind(6);
+
   /** An enumerator constant. */
   static const enumConstantDecl = CursorKind(7);
+
   /** A function. */
   static const functionDecl = CursorKind(8);
+
   /** A variable. */
   static const varDecl = CursorKind(9);
+
   /** A function or method parameter. */
   static const parmDecl = CursorKind(10);
+
   /** An Objective-C \@interface. */
   static const objCInterfaceDecl = CursorKind(11);
+
   /** An Objective-C \@interface for a category. */
   static const objCCategoryDecl = CursorKind(12);
+
   /** An Objective-C \@protocol declaration. */
   static const objCProtocolDecl = CursorKind(13);
+
   /** An Objective-C \@property declaration. */
   static const objCPropertyDecl = CursorKind(14);
+
   /** An Objective-C instance variable. */
   static const objCIvarDecl = CursorKind(15);
+
   /** An Objective-C instance method. */
   static const objCInstanceMethodDecl = CursorKind(16);
+
   /** An Objective-C class method. */
   static const objCClassMethodDecl = CursorKind(17);
+
   /** An Objective-C \@implementation. */
   static const objCImplementationDecl = CursorKind(18);
+
   /** An Objective-C \@implementation for a category. */
   static const objCCategoryImplDecl = CursorKind(19);
+
   /** A typedef. */
   static const typedefDecl = CursorKind(20);
+
   /** A C++ class method. */
   static const cxxMethod = CursorKind(21);
+
   /** A C++ namespace. */
   static const namespace = CursorKind(22);
+
   /** A linkage specification, e.g. 'extern "C"'. */
   static const linkageSpec = CursorKind(23);
+
   /** A C++ constructor. */
   static const constructor = CursorKind(24);
+
   /** A C++ destructor. */
   static const destructor = CursorKind(25);
+
   /** A C++ conversion function. */
   static const conversionFunction = CursorKind(26);
+
   /** A C++ template type parameter. */
   static const templateTypeParameter = CursorKind(27);
+
   /** A C++ non-type template parameter. */
   static const nonTypeTemplateParameter = CursorKind(28);
+
   /** A C++ template template parameter. */
   static const templateTemplateParameter = CursorKind(29);
+
   /** A C++ function template. */
   static const functionTemplate = CursorKind(30);
+
   /** A C++ class template. */
   static const classTemplate = CursorKind(31);
+
   /** A C++ class template partial specialization. */
   static const classTemplatePartialSpecialization = CursorKind(32);
+
   /** A C++ namespace alias declaration. */
   static const namespaceAlias = CursorKind(33);
+
   /** A C++ using directive. */
   static const usingDirective = CursorKind(34);
+
   /** A C++ using declaration. */
   static const usingDeclaration = CursorKind(35);
+
   /** A C++ alias declaration */
   static const typeAliasDecl = CursorKind(36);
+
   /** An Objective-C \@synthesize definition. */
   static const objCSynthesizeDecl = CursorKind(37);
+
   /** An Objective-C \@dynamic definition. */
   static const objCDynamicDecl = CursorKind(38);
+
   /** An access specifier. */
   static const cxxAccessSpecifier = CursorKind(39);
 
@@ -102,6 +140,7 @@ class CursorKind {
   static const objCSuperClassRef = CursorKind(40);
   static const objCProtocolRef = CursorKind(41);
   static const objCClassRef = CursorKind(42);
+
   /**
    * A reference to a type declaration.
    *
@@ -119,20 +158,24 @@ class CursorKind {
    */
   static const typeRef = CursorKind(43);
   static const cxxBaseSpecifier = CursorKind(44);
+
   /**
    * A reference to a class template, function template, template
    * template parameter, or class template partial specialization.
    */
   static const templateRef = CursorKind(45);
+
   /**
    * A reference to a namespace or namespace alias.
    */
   static const namespaceRef = CursorKind(46);
+
   /**
    * A reference to a member of a struct, union, or class that occurs in
    * some non-expression context, e.g., a designated initializer.
    */
   static const memberRef = CursorKind(47);
+
   /**
    * A reference to a labeled statement.
    *
@@ -234,7 +277,7 @@ class CursorKind {
   static const callExpr = CursorKind(103);
 
   /** An expression that sends a message to an Objective-C
-   object or class. */
+      object or class. */
   static const objCMessageExpr = CursorKind(104);
 
   /** An expression that represents a block literal. */
@@ -479,6 +522,7 @@ class CursorKind {
 
   /* Statements */
   static const firstStmt = CursorKind(200);
+
   /**
    * A statement whose specific kind is not exposed via this
    * interface.
@@ -839,6 +883,7 @@ class CursorKind {
 
   /* Attributes */
   static const firstAttr = CursorKind(400);
+
   /**
    * An attribute whose specific kind is not exposed via this
    * interface.
@@ -903,10 +948,12 @@ class CursorKind {
    */
   static const moduleImportDecl = CursorKind(600);
   static const typeAliasTemplateDecl = CursorKind(601);
+
   /**
    * A static_assert or _Static_assert node
    */
   static const staticAssert = CursorKind(602);
+
   /**
    * a friend declaration.
    */

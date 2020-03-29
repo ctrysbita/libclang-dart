@@ -1,40 +1,32 @@
-/**
- * Flags that control the creation of translation units.
- *
- * The enumerators in this enumeration type are meant to be bitwise
- * ORed together to specify which options should be used when
- * constructing the translation unit.
- */
+/// Flags that control the creation of translation units.
+///
+/// The enumerators in this enumeration type are meant to be bitwise
+/// ORed together to specify which options should be used when
+/// constructing the translation unit.
 class TranslationUnitFlag {
-  /**
-   * Used to indicate that no special translation-unit options are
-   * needed.
-   */
+  /// Used to indicate that no special translation-unit options are
+  /// needed.
   static const none = 0x0;
 
-  /**
-   * Used to indicate that the parser should construct a "detailed"
-   * preprocessing record; including all macro definitions and instantiations.
-   *
-   * Constructing a detailed preprocessing record requires more memory
-   * and time to parse; since the information contained in the record
-   * is usually not retained. However; it can be useful for
-   * applications that require more detailed information about the
-   * behavior of the preprocessor.
-   */
+  /// Used to indicate that the parser should construct a "detailed"
+  /// preprocessing record; including all macro definitions and instantiations.
+  ///
+  /// Constructing a detailed preprocessing record requires more memory
+  /// and time to parse; since the information contained in the record
+  /// is usually not retained. However; it can be useful for
+  /// applications that require more detailed information about the
+  /// behavior of the preprocessor.
   static const detailedPreprocessingRecord = 0x01;
 
-  /**
-   * Used to indicate that the translation unit is incomplete.
-   *
-   * When a translation unit is considered "incomplete"; semantic
-   * analysis that is typically performed at the end of the
-   * translation unit will be suppressed. For example; this suppresses
-   * the completion of tentative declarations in C and of
-   * instantiation of implicitly-instantiation function templates in
-   * C++. This option is typically used when parsing a header with the
-   * intent of producing a precompiled header.
-   */
+  /// Used to indicate that the translation unit is incomplete.
+  ///
+  /// When a translation unit is considered "incomplete"; semantic
+  /// analysis that is typically performed at the end of the
+  /// translation unit will be suppressed. For example; this suppresses
+  /// the completion of tentative declarations in C and of
+  /// instantiation of implicitly-instantiation function templates in
+  /// C++. This option is typically used when parsing a header with the
+  /// intent of producing a precompiled header.
   static const incomplete = 0x02;
 
   /**
@@ -115,27 +107,20 @@ class TranslationUnitFlag {
    */
   static const keepGoing = 0x200;
 
-  /**
-   * Sets the preprocessor in a mode for parsing a single file only.
-   */
+
+  /// Sets the preprocessor in a mode for parsing a single file only.
   static const singleFileParse = 0x400;
 
-  /**
-   * Used in combination with static const SkipFunctionBodies to
-   * constrain the skipping of function bodies to the preamble.
-   *
-   * The function bodies of the main file are not skipped.
-   */
+  /// Used in combination with static const SkipFunctionBodies to
+  /// constrain the skipping of function bodies to the preamble.
+  ///
+  /// The function bodies of the main file are not skipped.
   static const limitSkipFunctionBodiesToPreamble = 0x800;
 
-  /**
-   * Used to indicate that attributed types should be included in CXType.
-   */
+  /// Used to indicate that attributed types should be included in CXType.
   static const includeAttributedTypes = 0x1000;
 
-  /**
-   * Used to indicate that implicit attributes should be visited.
-   */
+  /// Used to indicate that implicit attributes should be visited.
   static const visitImplicitAttributes = 0x2000;
 
   /**
@@ -147,4 +132,14 @@ class TranslationUnitFlag {
    * example; which typically shows only the diagnostics in the main file.
    */
   static const ignoreNonErrorsFromIncludedFiles = 0x4000;
+}
+
+/// Flags that control how translation units are saved.
+///
+/// The enumerators in this enumeration type are meant to be bitwise
+/// ORed together to specify which options should be used when
+/// saving the translation unit.
+class SaveTranslationUnitFlag {
+  /// Used to indicate that no special saving options are needed.
+  static const none = 0x0;
 }

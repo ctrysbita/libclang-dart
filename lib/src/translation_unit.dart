@@ -1,9 +1,37 @@
 import 'dart:ffi';
+
 import 'package:ffi/ffi.dart';
 
 import 'common.dart';
 import 'cursor.dart';
 import 'index.dart';
+import 'translation_unit_flag.dart';
+
+/// Describes the kind of error that occurred (if any) in a call to
+/// [TranslationUnit.saveTranslationUnit].
+enum SaveError {
+  /// Indicates that no error occurred while saving a translation unit.
+  none,
+
+  /// Indicates that an unknown error occurred while attempting to save
+  /// the file.
+  ///
+  /// This error typically indicates that file I/O failed when attempting to
+  /// write the file.
+  unknown,
+
+  /// Indicates that errors during translation prevented this attempt
+  /// to save the translation unit.
+  ///
+  /// Errors that prevent the translation unit from being saved can be
+  /// extracted using [TranslationUnit.numDiagnostics] and
+  /// [TranslationUnit.diagnostics]
+  translationErrors,
+
+  /// Indicates that the translation unit to be saved was somehow
+  /// invalid (e.g., NULL).
+  invalidTU
+}
 
 /// Native implementation of [TranslationUnit].
 class TranslationUnitImpl extends Struct {}
@@ -47,9 +75,7 @@ class TranslationUnit {
       void Function(
           Pointer<TranslationUnitImpl>)>('clang_disposeTranslationUnit');
 
-  /**
-   * Destroy the specified CXTranslationUnit object.
-   */
+  /// Destroy the specified CXTranslationUnit object.
   void dispose() => _disposeTranslationUnit(impl);
 
   static final _getTranslationUnitCursor = libclang.lookupFunction<
@@ -57,22 +83,18 @@ class TranslationUnit {
       Pointer<Cursor> Function(
           Pointer<TranslationUnitImpl>)>('clang_getTranslationUnitCursor');
 
-  /**
-   * Retrieve the cursor that represents the given translation unit.
-   *
-   * The translation unit cursor can be used to start traversing the
-   * various declarations within the given translation unit.
-   */
+  /// Retrieve the cursor that represents the given translation unit.
+  ///
+  /// The translation unit cursor can be used to start traversing the various
+  /// declarations within the given translation unit.
   Pointer<Cursor> get cursor => _getTranslationUnitCursor(impl);
 
   static final _getNumDiagnostics = libclang.lookupFunction<
       Uint32 Function(Pointer<TranslationUnitImpl>),
       int Function(Pointer<TranslationUnitImpl>)>('clang_getNumDiagnostics');
 
-  /**
-   * Determine the number of diagnostics produced for the given
-   * translation unit.
-   */
+  /// Determine the number of diagnostics produced for the given translation
+  /// unit.
   int get numDiagnostics => _getNumDiagnostics(impl);
 
   static final _saveTranslationUnit = libclang.lookupFunction<
@@ -80,29 +102,17 @@ class TranslationUnit {
       int Function(Pointer<TranslationUnitImpl>, Pointer<Utf8>,
           int)>('clang_saveTranslationUnit');
 
-  /**
-   * Saves a translation unit into a serialized representation of
-   * that translation unit on disk.
-   *
-   * Any translation unit that was parsed without error can be saved
-   * into a file. The translation unit can then be deserialized into a
-   * new \c CXTranslationUnit with \c clang_createTranslationUnit() or,
-   * if it is an incomplete translation unit that corresponds to a
-   * header, used as a precompiled header when parsing other translation
-   * units.
-   *
-   * \param TU The translation unit to save.
-   *
-   * \param FileName The file to which the translation unit will be saved.
-   *
-   * \param options A bitmask of options that affects how the translation unit
-   * is saved. This should be a bitwise OR of the
-   * CXSaveTranslationUnit_XXX flags.
-   *
-   * \returns A value that will match one of the enumerators of the CXSaveError
-   * enumeration. Zero (CXSaveError_None) indicates that the translation unit was
-   * saved successfully, while a non-zero value indicates that a problem occurred.
-   */
-  int saveTranslationUnit(String fileName, int options) =>
-      _saveTranslationUnit(impl, Utf8.toUtf8(fileName), options);
+  /// Saves a translation unit into a serialized representation of
+  /// that translation unit on disk.
+  ///
+  /// Any translation unit that was parsed without error can be saved
+  /// into a file. The translation unit can then be deserialized into a
+  /// new [TranslationUnit] with [TranslationUnit.create] or, if it is an
+  /// incomplete translation unit that corresponds to a header, used as a
+  /// precompiled header when parsing other translation units.
+  ///
+  /// [options] is a bitmask of options that affects how the translation unit
+  /// is saved. This should be a bitwise OR of the [SaveTranslationUnitFlag].
+  SaveError saveTranslationUnit(String fileName, int options) => SaveError
+      .values[_saveTranslationUnit(impl, Utf8.toUtf8(fileName), options)];
 }
