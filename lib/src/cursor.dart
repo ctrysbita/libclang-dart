@@ -1,4 +1,7 @@
-part of '../clang.dart';
+import 'dart:ffi';
+
+import 'common.dart';
+import 'cursor_kind.dart';
 
 /**
  * A cursor representing some element in the abstract syntax tree for
@@ -19,7 +22,7 @@ part of '../clang.dart';
  * source code into the AST.
  */
 class Cursor extends Struct {
-  @Int32()
+  @Uint32()
   int _kind;
 
   @Int32()
@@ -62,7 +65,8 @@ typedef _NativeCursorVisitor = Int32 Function(
 typedef CursorVisitor = ChildVisitResult Function(
     Pointer<Cursor>, Pointer<Cursor>, Pointer<Void>);
 
-final _visitChildren = _lib.lookupFunction<
+// TODO: Not work! Pass parameter by value.
+final _visitChildren = libclang.lookupFunction<
     Uint32 Function(Pointer<Cursor>,
         Pointer<NativeFunction<_NativeCursorVisitor>>, Pointer<Void>),
     int Function(Pointer<Cursor>, Pointer<NativeFunction<_NativeCursorVisitor>>,

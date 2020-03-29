@@ -1,4 +1,6 @@
-part of '../clang.dart';
+import 'dart:ffi';
+
+import 'common.dart';
 
 class Index {
   final Pointer<Void> cxIndex;
@@ -46,11 +48,12 @@ class Index {
   Index(int excludeDeclarationsFromPCH, int displayDiagnostics)
       : cxIndex = _createIndex(excludeDeclarationsFromPCH, displayDiagnostics);
 
-  static final _createIndex = _lib.lookupFunction<
+  static final _createIndex = libclang.lookupFunction<
       Pointer<Void> Function(Int32, Int32),
       Pointer<Void> Function(int, int)>('clang_createIndex');
 
-  static final _disposeIndex = _lib.lookupFunction<Void Function(Pointer<Void>),
+  static final _disposeIndex = libclang.lookupFunction<
+      Void Function(Pointer<Void>),
       void Function(Pointer<Void>)>('clang_disposeIndex');
 
   /**

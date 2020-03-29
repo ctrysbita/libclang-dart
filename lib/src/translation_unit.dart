@@ -1,15 +1,20 @@
-part of '../clang.dart';
+import 'dart:ffi';
+import 'package:ffi/ffi.dart';
+
+import 'common.dart';
+import 'cursor.dart';
+import 'index.dart';
 
 /// Native implementation of [TranslationUnit].
-abstract class _TranslationUnitImpl extends Struct {}
+class TranslationUnitImpl extends Struct {}
 
 class TranslationUnit {
-  final Pointer<_TranslationUnitImpl> impl;
+  final Pointer<TranslationUnitImpl> impl;
 
-  static final _parseTranslationUnit = _lib.lookupFunction<
-      Pointer<_TranslationUnitImpl> Function(Pointer<Void>, Pointer<Utf8>,
+  static final _parseTranslationUnit = libclang.lookupFunction<
+      Pointer<TranslationUnitImpl> Function(Pointer<Void>, Pointer<Utf8>,
           Pointer<Void>, Int32, Pointer<Void>, Uint32, Uint32),
-      Pointer<_TranslationUnitImpl> Function(
+      Pointer<TranslationUnitImpl> Function(
           Pointer<Void>,
           Pointer<Utf8>,
           Pointer<Void>,
@@ -37,20 +42,20 @@ class TranslationUnit {
           translationUnitFlag,
         );
 
-  static final _disposeTranslationUnit = _lib.lookupFunction<
-      Void Function(Pointer<_TranslationUnitImpl>),
+  static final _disposeTranslationUnit = libclang.lookupFunction<
+      Void Function(Pointer<TranslationUnitImpl>),
       void Function(
-          Pointer<_TranslationUnitImpl>)>('clang_disposeTranslationUnit');
+          Pointer<TranslationUnitImpl>)>('clang_disposeTranslationUnit');
 
   /**
    * Destroy the specified CXTranslationUnit object.
    */
   void dispose() => _disposeTranslationUnit(impl);
 
-  static final _getTranslationUnitCursor = _lib.lookupFunction<
-      Pointer<Cursor> Function(Pointer<_TranslationUnitImpl>),
+  static final _getTranslationUnitCursor = libclang.lookupFunction<
+      Pointer<Cursor> Function(Pointer<TranslationUnitImpl>),
       Pointer<Cursor> Function(
-          Pointer<_TranslationUnitImpl>)>('clang_getTranslationUnitCursor');
+          Pointer<TranslationUnitImpl>)>('clang_getTranslationUnitCursor');
 
   /**
    * Retrieve the cursor that represents the given translation unit.
@@ -60,9 +65,9 @@ class TranslationUnit {
    */
   Pointer<Cursor> get cursor => _getTranslationUnitCursor(impl);
 
-  static final _getNumDiagnostics = _lib.lookupFunction<
-      Uint32 Function(Pointer<_TranslationUnitImpl>),
-      int Function(Pointer<_TranslationUnitImpl>)>('clang_getNumDiagnostics');
+  static final _getNumDiagnostics = libclang.lookupFunction<
+      Uint32 Function(Pointer<TranslationUnitImpl>),
+      int Function(Pointer<TranslationUnitImpl>)>('clang_getNumDiagnostics');
 
   /**
    * Determine the number of diagnostics produced for the given
@@ -70,9 +75,9 @@ class TranslationUnit {
    */
   int get numDiagnostics => _getNumDiagnostics(impl);
 
-  static final _saveTranslationUnit = _lib.lookupFunction<
-      Int32 Function(Pointer<_TranslationUnitImpl>, Pointer<Utf8>, Uint32),
-      int Function(Pointer<_TranslationUnitImpl>, Pointer<Utf8>,
+  static final _saveTranslationUnit = libclang.lookupFunction<
+      Int32 Function(Pointer<TranslationUnitImpl>, Pointer<Utf8>, Uint32),
+      int Function(Pointer<TranslationUnitImpl>, Pointer<Utf8>,
           int)>('clang_saveTranslationUnit');
 
   /**

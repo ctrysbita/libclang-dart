@@ -1,5 +1,3 @@
-part of '../clang.dart';
-
 /**
  * Flags that control the creation of translation units.
  *

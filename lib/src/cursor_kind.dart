@@ -1,5 +1,3 @@
-part of '../clang.dart';
-
 class CursorKind {
   final int value;
 
