@@ -39,32 +39,65 @@ class TranslationUnitImpl extends Struct {}
 class TranslationUnit {
   final Pointer<TranslationUnitImpl> impl;
 
-  static final _parseTranslationUnit = libclang.lookupFunction<
-      Pointer<TranslationUnitImpl> Function(Pointer<Void>, Pointer<Utf8>,
-          Pointer<Void>, Int32, Pointer<Void>, Uint32, Uint32),
+  static final _createTranslationUnit = libclang.lookupFunction<
+      Pointer<TranslationUnitImpl> Function(Pointer<Void>, Pointer<Utf8>),
       Pointer<TranslationUnitImpl> Function(
-          Pointer<Void>,
-          Pointer<Utf8>,
-          Pointer<Void>,
-          int,
-          Pointer<Void>,
-          int,
-          int)>('clang_parseTranslationUnit');
+          Pointer<Void>, Pointer<Utf8>)>('clang_createTranslationUnit');
 
-  /**
-   * Same as \c clang_parseTranslationUnit2, but returns
-   * the \c CXTranslationUnit instead of an error code.  In case of an error this
-   * routine returns a \c NULL \c CXTranslationUnit, without further detailed
-   * error codes.
-   */
+  /// Create a translation unit from an AST file (`-emit-ast`).
+  TranslationUnit.create(Index index, String astFileName)
+      : impl = _createTranslationUnit(index.cxIndex, Utf8.toUtf8(astFileName));
+
+  static final _parseTranslationUnit = libclang.lookupFunction<
+      Pointer<TranslationUnitImpl> Function(
+    Pointer<Void>,
+    Pointer<Utf8>,
+    Pointer<Pointer<Utf8>>,
+    Int32,
+    Pointer<Void>,
+    Uint32,
+    Uint32,
+  ),
+      Pointer<TranslationUnitImpl> Function(
+    Pointer<Void>,
+    Pointer<Utf8>,
+    Pointer<Pointer<Utf8>>,
+    int,
+    Pointer<Void>,
+    int,
+    int,
+  )>('clang_parseTranslationUnit');
+
+  /// Parse the given source file and the translation unit corresponding
+  /// to that file.
+  ///
+  /// This routine is the main entry point for the Clang C API, providing the
+  /// ability to parse a source file into a translation unit that can then be
+  /// queried by other functions in the API. This routine accepts a set of
+  /// command-line arguments so that the compilation can be configured in the
+  /// same way that the compiler is configured on the command line.
   TranslationUnit.parse(
-      Index index, String sourceFileName, int translationUnitFlag)
-      : impl = _parseTranslationUnit(
+    Index index,
+    String sourceFileName,
+    int translationUnitFlag, {
+
+    /// The command-line arguments that would be passed to the clang executable
+    /// if it were being invoked out-of-process. These command-line options will
+    /// be parsed and will affect how the translation unit is parsed. Note that
+    /// the following options are ignored: '-c', '-emit-ast', '-fsyntax-only'
+    /// (which is the default), and '-o \<output file>'.
+    List<String> args = const [],
+  }) : impl = _parseTranslationUnit(
           index.cxIndex,
           Utf8.toUtf8(sourceFileName),
-          // TODO: Handle args.
-          Pointer.fromAddress(0),
-          0,
+          () {
+            var ptr = allocate<Pointer<Utf8>>(count: args.length);
+            for (var i = 0; i < args.length; ++i)
+              ptr.elementAt(i).value = Utf8.toUtf8(args[i]);
+            return ptr;
+          }(),
+          args.length,
+          // TODO: Handle unsaved files.
           Pointer.fromAddress(0),
           0,
           translationUnitFlag,

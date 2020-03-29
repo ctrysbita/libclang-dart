@@ -66,18 +66,21 @@ final _visitChildren = libclang.lookupFunction<
         Pointer<Void>)>('clang_visitChildren');
 
 extension CursorVisitorAddon on Pointer<Cursor> {
-  /// dart:ffi only supports calling static dart functions from native code.
-  static int Function(Pointer<Cursor> cursor, Pointer<Cursor> parent,
-      Pointer<Void> clientData) _callback;
+  /// Temporary visitor holder since dart:ffi only supports calling static dart
+  /// functions from native code.
+  static CursorVisitor _visitor = null;
+
+  /// Static callback.
+  static int callback(Pointer<Cursor> cursor, Pointer<Cursor> parent,
+          Pointer<Void> clientData) =>
+      _visitor(cursor, parent, clientData).index;
 
   int visitChildren(CursorVisitor visitor, [Pointer<Void> clientData]) {
-    CursorVisitorAddon._callback = (Pointer<Cursor> cursor,
-            Pointer<Cursor> parent, Pointer<Void> clientData) =>
-        visitor(cursor, parent, clientData).index;
+    CursorVisitorAddon._visitor = visitor;
 
     // Break visiting while exception throws.
     Pointer<NativeFunction<_NativeCursorVisitor>> nativeCallback =
-        Pointer.fromFunction(_callback, 0);
+        Pointer.fromFunction(callback, 0);
 
     return _visitChildren(
         this, nativeCallback, clientData ?? Pointer.fromAddress(0));
