@@ -1,4 +1,3 @@
 ## 0.0.1
 
-- Basic functions to parse source file and save AST.
-
+- Parse source file and load/save AST.
