@@ -58,12 +58,12 @@ typedef _NativeCursorVisitor = Int32 Function(
 typedef CursorVisitor = ChildVisitResult Function(
     Pointer<Cursor>, Pointer<Cursor>, Pointer<Void>);
 
-// TODO: Not work! Pass parameter by value.
-final _visitChildren = libclang.lookupFunction<
+// TODO: Replace to original function.
+final _visitChildren = libclangWrapper.lookupFunction<
     Uint32 Function(Pointer<Cursor>,
         Pointer<NativeFunction<_NativeCursorVisitor>>, Pointer<Void>),
     int Function(Pointer<Cursor>, Pointer<NativeFunction<_NativeCursorVisitor>>,
-        Pointer<Void>)>('clang_visitChildren');
+        Pointer<Void>)>('clang_VisitChildren');
 
 extension CursorVisitorAddon on Pointer<Cursor> {
   /// Temporary visitor holder since dart:ffi only supports calling static dart

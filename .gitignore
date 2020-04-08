@@ -5,5 +5,8 @@
 .pub/
 /build/
 
+*.so
+*.dll
+
 .idea
 .vscode/c_cpp_properties.json

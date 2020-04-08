@@ -111,10 +111,11 @@ class TranslationUnit {
   /// Destroy the specified CXTranslationUnit object.
   void dispose() => _disposeTranslationUnit(impl);
 
-  static final _getTranslationUnitCursor = libclang.lookupFunction<
+  // TODO: Replace to original function.
+  static final _getTranslationUnitCursor = libclangWrapper.lookupFunction<
       Pointer<Cursor> Function(Pointer<TranslationUnitImpl>),
       Pointer<Cursor> Function(
-          Pointer<TranslationUnitImpl>)>('clang_getTranslationUnitCursor');
+          Pointer<TranslationUnitImpl>)>('clang_GetTranslationUnitCursor');
 
   /// Retrieve the cursor that represents the given translation unit.
   ///

@@ -1,5 +1,5 @@
 name: libclang
-description: Dart FFI bindings to libclang that provides the ability to analyze C/C++ code.
+description: Dart FFI bindings to libclang that provide the ability to analyze C/C++ code.
 homepage: https://github.com/ctrysbita/libclang-dart
 version: 0.0.1+1
 

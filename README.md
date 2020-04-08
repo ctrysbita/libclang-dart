@@ -7,11 +7,19 @@
 
 Dart FFI bindings to libclang.
 
+The package is still under initial development.  
+Issues and PRs are welcome.
+
 ## Warning
 
 - The package currently trys to call dynamic library `/usr/lib/llvm-9/lib/libclang.so` directly. Look at [here](https://github.com/ctrysbita/libclang-dart/blob/c5b985dd3f04b16b43326b47d3317a767017001c/lib/src/common.dart#L4) for detail.
 
-- According to [#41062](https://github.com/dart-lang/sdk/issues/41062) and [#36730](https://github.com/dart-lang/sdk/issues/36730) from dart SDK, functions related to `CXCursor` are not available until official support of pass/return by value.
+- According to [#41062](https://github.com/dart-lang/sdk/issues/41062) and [#36730](https://github.com/dart-lang/sdk/issues/36730) from dart SDK, functions related to `CXCursor` are supported by a wrapper of libclang until official support of pass/return by value.
 
-The package is still under initial development.
-Issues and PRs are welcome.
+### Setup Wrapper
+
+Make sure your environment has g++ installed.
+
+```
+make all
+```
