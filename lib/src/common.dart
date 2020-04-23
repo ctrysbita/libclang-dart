@@ -1,4 +1,3 @@
-import 'dart:cli';
 import 'dart:ffi';
 
 import 'dart:io';
@@ -10,8 +9,13 @@ final libclangWrapper = DynamicLibrary.open('wrapper/wrapper.so');
 
 DynamicLibrary findLibclang() {
   if (Platform.isLinux) {
-    if (waitFor(File('/usr/lib/llvm-9/lib/libclang.so').exists()))
-      return DynamicLibrary.open('/usr/lib/llvm-9/lib/libclang.so');
+    const paths = [
+      '/usr/lib/llvm-10/lib/libclang.so',
+      '/usr/lib/llvm-9/lib/libclang.so',
+    ];
+    var existPath =
+        paths.firstWhere((p) => File(p).existsSync(), orElse: () => '');
+    if (existPath.isNotEmpty) return DynamicLibrary.open(existPath);
   }
 
   throw Exception('Unsupported platform.');
