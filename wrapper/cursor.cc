@@ -34,4 +34,10 @@ CXString* clang_GetCursorSpelling(CXCursor* cursor) {
   auto str_ptr = new CXString(str);
   return str_ptr;
 }
+
+CXString* clang_GetCursorKindSpelling(CXCursorKind kind) {
+  auto str = clang_getCursorKindSpelling(kind);
+  auto str_ptr = new CXString(str);
+  return str_ptr;
+}
 }

@@ -1,7 +1,19 @@
+import 'dart:ffi';
+
+import 'common.dart';
+import 'string.dart';
+
 class CursorKind {
   final int value;
 
   const CursorKind(this.value);
+
+  /// TODO: Replace to original function.
+  static final _getCursorKindSpelling = libclangWrapper.lookupFunction<
+      Pointer<CXString> Function(Uint32),
+      Pointer<CXString> Function(int)>('clang_GetCursorKindSpelling');
+
+  String get spelling => _getCursorKindSpelling(value).string;
 
   /* Declarations */
   /**
