@@ -10,6 +10,7 @@ void main(List<String> args) {
   var cursor = unit.cursor;
   cursor.visitChildren((c, p, client) {
     print(c.ref.kind.value);
+    print(c.spelling);
     return ChildVisitResult.recurse;
   });
 

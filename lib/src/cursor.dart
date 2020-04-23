@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'string.dart';
 import 'common.dart';
 import 'cursor_kind.dart';
 import 'translation_unit.dart';
@@ -58,14 +59,16 @@ typedef _NativeCursorVisitor = Int32 Function(
 typedef CursorVisitor = ChildVisitResult Function(
     Pointer<Cursor>, Pointer<Cursor>, Pointer<Void>);
 
-// TODO: Replace to original function.
-final _visitChildren = libclangWrapper.lookupFunction<
-    Uint32 Function(Pointer<Cursor>,
-        Pointer<NativeFunction<_NativeCursorVisitor>>, Pointer<Void>),
-    int Function(Pointer<Cursor>, Pointer<NativeFunction<_NativeCursorVisitor>>,
-        Pointer<Void>)>('clang_VisitChildren');
-
 extension CursorVisitorAddon on Pointer<Cursor> {
+  /// TODO: Replace to original function.
+  static final _visitChildren = libclangWrapper.lookupFunction<
+      Uint32 Function(Pointer<Cursor>,
+          Pointer<NativeFunction<_NativeCursorVisitor>>, Pointer<Void>),
+      int Function(
+          Pointer<Cursor>,
+          Pointer<NativeFunction<_NativeCursorVisitor>>,
+          Pointer<Void>)>('clang_VisitChildren');
+
   /// Temporary visitor holder since dart:ffi only supports calling static dart
   /// functions from native code.
   static CursorVisitor _visitor = null;
@@ -85,4 +88,13 @@ extension CursorVisitorAddon on Pointer<Cursor> {
     return _visitChildren(
         this, nativeCallback, clientData ?? Pointer.fromAddress(0));
   }
+}
+
+extension CursorSpellingAddon on Pointer<Cursor> {
+  /// TODO: Replace to original function.
+  static final _getCursorSpelling = libclangWrapper.lookupFunction<
+      Pointer<CXString> Function(Pointer<Cursor>),
+      Pointer<CXString> Function(Pointer<Cursor>)>('clang_GetCursorSpelling');
+
+  get spelling => _getCursorSpelling(this).string;
 }

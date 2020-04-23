@@ -29,4 +29,9 @@ unsigned clang_VisitChildren(CXCursor* cursor,
   return result;
 }
 
+CXString* clang_GetCursorSpelling(CXCursor* cursor) {
+  auto str = clang_getCursorSpelling(*cursor);
+  auto str_ptr = new CXString(str);
+  return str_ptr;
+}
 }
