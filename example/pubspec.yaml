@@ -1,0 +1,13 @@
+name: libclang_example
+description: Example of dart FFI bindings to libclang that provide the ability to analyze C/C++ code.
+homepage: https://github.com/ctrysbita/libclang-dart
+publish_to: none
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  libclang:
+    path: ../
+
+dev_dependencies: {}
